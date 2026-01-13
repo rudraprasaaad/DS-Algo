@@ -29,11 +29,11 @@ Visit [CSES Problem Set](https://cses.fi/problemset/) and choose a problem to so
 
 ### 2. Create a New File
 
-Create a new TypeScript file in the appropriate category folder:
+Create a new JavaScript file in the appropriate category folder:
 
 ```bash
 # Example for an introductory problem
-touch cses/introductory-problems/problem-name.ts
+touch cses/introductory-problems/problem-name.js
 ```
 
 ### 3. Use the Template
@@ -47,19 +47,18 @@ Copy the template from `cses-template.md` and fill in:
 
 ### 4. Implement Your Solution
 
-Use the I/O utilities from `utils/cses-io.ts`:
+Use CommonJS format for CSES compatibility:
 
-```typescript
-import { readInt, readInts, printArray, println } from '../../utils/cses-io';
+```javascript
+const fs = require('fs');
+const input = fs.readFileSync(0, 'utf-8').trim();
 
-async function solve(): Promise<void> {
-  const n = readInt(); // Read single integer
-  const arr = readInts(); // Read array of integers
+const n = parseInt(input); // Read single integer
+const arr = input.split(' ').map(Number); // Read array of integers
 
-  // Your solution logic here
+// Your solution logic here
 
-  println(result); // Print result
-}
+console.log(result); // Print result
 ```
 
 ### 5. Test Locally
@@ -68,46 +67,50 @@ Test your solution with sample inputs:
 
 ```bash
 # Method 1: Pipe input
-echo "3" | bun run cses/introductory-problems/weird-algorithm.ts
+echo "3" | bun run cses/introductory-problems/weird-algorithm.js
 
 # Method 2: Use input file
-bun run cses/introductory-problems/weird-algorithm.ts < input.txt
+bun run cses/introductory-problems/weird-algorithm.js < input.txt
 ```
 
 ### 6. Submit to CSES
 
 1. Copy your solution code
 2. Go to the problem page on CSES
-3. Paste your code and submit
-4. Make sure to select the correct language (C++ or adapt for their system)
+3. Select **Node.js** as the language
+4. Paste your code and submit
 
 ## Input/Output Format
 
 CSES problems use **standard input (stdin)** and **standard output (stdout)**:
 
-- **Input**: Read from stdin using the utilities in `cses-io.ts`
-- **Output**: Write to stdout using `println()` or `printArray()`
+- **Input**: Read from stdin using `fs.readFileSync(0, 'utf-8')`
+- **Output**: Write to stdout using `console.log()`
 
 ### Common I/O Patterns
 
-```typescript
+```javascript
+const fs = require('fs');
+const input = fs.readFileSync(0, 'utf-8').trim();
+const lines = input.split('\n');
+
 // Read single integer
-const n = readInt();
+const n = parseInt(lines[0]);
 
 // Read multiple integers from one line
-const [a, b, c] = readInts();
+const [a, b, c] = lines[0].split(' ').map(Number);
 
-// Read array of n integers
-const arr = readInts();
+// Read array of integers
+const arr = lines[1].split(' ').map(Number);
 
 // Read string
-const s = readLine();
+const s = lines[0];
 
 // Print single value
-println(42);
+console.log(42);
 
 // Print array with spaces
-printArray([1, 2, 3, 4]); // Output: 1 2 3 4
+console.log([1, 2, 3, 4].join(' ')); // Output: 1 2 3 4
 ```
 
 ## Available Utilities

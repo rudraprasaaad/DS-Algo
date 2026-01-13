@@ -2,9 +2,9 @@
 
 Use this template when creating new CSES problem files.
 
-## TypeScript Template for CSES Problems
+## JavaScript Template for CSES Problems
 
-```typescript
+```javascript
 /**
  * CSES Problem: [Problem Name]
  * Link: https://cses.fi/problemset/task/[problem-id]
@@ -38,38 +38,43 @@ Use this template when creating new CSES problem files.
  * Space Complexity: O(?)
  */
 
-import {
+const fs = require('fs');
+const input = fs.readFileSync(0, 'utf-8').trim();
+
+// Parse input
+const n = parseInt(input);
+
+// Your solution here
+
+// Print output
+console.log(result);
+```
+
+## Alternative: Using I/O Utilities
+
+```javascript
+/**
+ * CSES Problem: [Problem Name]
+ * Link: https://cses.fi/problemset/task/[problem-id]
+ */
+
+const {
   readInt,
   readInts,
-  readLine,
-  printArray,
   println,
-} from '../../utils/cses-io';
+  printArray,
+} = require('../../utils/cses-io');
 
-async function solve(): Promise<void> {
-  // Read input
-  const n = readInt();
+// Read input
+const lines = require('fs').readFileSync(0, 'utf-8').trim().split('\n');
+let lineIndex = 0;
+const readLine = () => lines[lineIndex++];
+const n = parseInt(readLine());
 
-  // Your solution here
+// Your solution here
 
-  // Print output
-  println(result);
-}
-
-// Run the solution
-if (import.meta.main) {
-  const input = await Bun.stdin.text();
-  const lines = input.trim().split('\n');
-  let lineIndex = 0;
-
-  // Override read functions for this execution
-  const readLine = () => lines[lineIndex++] || '';
-  const readInt = () => parseInt(readLine());
-  const readInts = () => readLine().split(' ').map(Number);
-
-  // Call solve with overridden functions
-  await solve();
-}
+// Print output
+console.log(result);
 ```
 
 ## Quick Start
@@ -80,23 +85,33 @@ if (import.meta.main) {
    - `[problem-id]` - CSES problem ID (e.g., 1068)
    - `[Difficulty]` - Easy/Medium/Hard
    - Fill in problem description, constraints, examples
-3. Implement the `solve()` function
-4. Test with: `echo "test input" | bun run filename.ts`
+3. Implement your solution
+4. Test with: `echo "test input" | bun run filename.js`
 
 ## Example Usage
 
 ```bash
 # Run with sample input
-echo "3" | bun run cses/introductory-problems/weird-algorithm.ts
+echo "3" | bun run cses/introductory-problems/weird-algorithm.js
 
 # Run with input file
-bun run cses/introductory-problems/weird-algorithm.ts < input.txt
+bun run cses/introductory-problems/weird-algorithm.js < input.txt
 ```
 
 ## Tips
 
-- Always use the I/O utilities from `utils/cses-io.ts`
+- Use CommonJS format (`require`/`module.exports`) for CSES compatibility
 - CSES expects exact output format (no extra spaces/newlines)
 - Test with all sample inputs before submitting
-- For large numbers, use `bigint` type
+- For large numbers, use `BigInt`
 - Remember to handle edge cases
+
+## CSES Submission
+
+When submitting to CSES:
+
+1. Copy your JavaScript code
+2. Make sure it uses CommonJS (`require`)
+3. Paste into CSES editor
+4. Select "Node.js" as language
+5. Submit

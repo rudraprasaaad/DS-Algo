@@ -3,18 +3,20 @@
  *
  * Helper functions for reading from stdin and writing to stdout
  * in CSES problem format.
+ *
+ * CommonJS format for CSES compatibility
  */
 
-import * as fs from 'fs';
+const fs = require('fs');
 
-let inputLines: string[] = [];
+let inputLines = [];
 let currentLine = 0;
 
 /**
  * Initialize input buffer from stdin
  * Call this at the start of your solution
  */
-export async function initInput(): Promise<void> {
+async function initInput() {
   const input = await Bun.stdin.text();
   inputLines = input.trim().split('\n');
   currentLine = 0;
@@ -23,14 +25,14 @@ export async function initInput(): Promise<void> {
 /**
  * Read next line from input
  */
-export function readLine(): string {
+function readLine() {
   return inputLines[currentLine++] || '';
 }
 
 /**
  * Read all remaining lines
  */
-export function readLines(): string[] {
+function readLines() {
   const lines = inputLines.slice(currentLine);
   currentLine = inputLines.length;
   return lines;
@@ -39,56 +41,56 @@ export function readLines(): string[] {
 /**
  * Read next line as integer
  */
-export function readInt(): number {
+function readInt() {
   return parseInt(readLine());
 }
 
 /**
  * Read next line as array of integers
  */
-export function readInts(): number[] {
+function readInts() {
   return readLine().split(' ').map(Number);
 }
 
 /**
  * Read next line as long (bigint)
  */
-export function readLong(): bigint {
+function readLong() {
   return BigInt(readLine());
 }
 
 /**
  * Read next line as array of longs (bigints)
  */
-export function readLongs(): bigint[] {
+function readLongs() {
   return readLine().split(' ').map(BigInt);
 }
 
 /**
  * Read next line as array of strings
  */
-export function readStrings(): string[] {
+function readStrings() {
   return readLine().split(' ');
 }
 
 /**
  * Print to stdout (with newline)
  */
-export function println(value: string | number | bigint): void {
+function println(value) {
   console.log(value);
 }
 
 /**
  * Print to stdout (without newline)
  */
-export function print(value: string | number | bigint): void {
+function print(value) {
   process.stdout.write(String(value));
 }
 
 /**
  * Print array elements separated by space
  */
-export function printArray(arr: (string | number | bigint)[]): void {
+function printArray(arr) {
   console.log(arr.join(' '));
 }
 
@@ -96,7 +98,23 @@ export function printArray(arr: (string | number | bigint)[]): void {
  * Synchronous version - reads all input at once
  * Use this for simpler problems
  */
-export function readAllInput(): string[] {
+function readAllInput() {
   const input = fs.readFileSync(0, 'utf-8');
   return input.trim().split('\n');
 }
+
+// CommonJS exports
+module.exports = {
+  initInput,
+  readLine,
+  readLines,
+  readInt,
+  readInts,
+  readLong,
+  readLongs,
+  readStrings,
+  println,
+  print,
+  printArray,
+  readAllInput,
+};

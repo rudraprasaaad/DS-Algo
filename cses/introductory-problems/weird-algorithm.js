@@ -1,8 +1,10 @@
-import * as fs from 'fs';
+'use strict';
+
+const fs = require('fs');
 const input = fs.readFileSync(0, 'utf-8').trim();
 let n = parseInt(input);
 
-const result: number[] = [];
+const result = [];
 
 while (n !== 1) {
   result.push(n);
