@@ -8,7 +8,7 @@ This repository helps you:
 
 - Practice fundamental data structures and algorithms
 - Solve problems from the CSES Problem Set
-- Track your progress systematically
+- Track progress systematically
 - Build a reference library of solutions
 
 ## 📂 Repository Structure
@@ -90,15 +90,6 @@ bun run lint
 - [HackerRank](https://www.hackerrank.com/)
 - [Codeforces](https://codeforces.com/)
 
-## 🤝 Contributing
-
-See `CONTRIBUTING.md` for guidelines on:
-
-- Adding new problems
-- Code style
-- Testing requirements
-- Documentation standards
-
 ## 📈 Features
 
 ✅ Organized folder structure by topic  
@@ -108,13 +99,6 @@ See `CONTRIBUTING.md` for guidelines on:
 ✅ Progress tracking  
 ✅ Code formatting and linting  
 ✅ Comprehensive templates
-
-## 🎯 Goals
-
-- Build a comprehensive library of DSA solutions
-- Practice competitive programming
-- Improve problem-solving skills
-- Create a reference for future use
 
 ---
 
